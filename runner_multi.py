@@ -16,7 +16,10 @@ def get_text(data):
     
     file_id = data['id']
     if not os.path.isdir(OUTPUT_FOLDER+data['filename']):
-        os.mkdir(OUTPUT_FOLDER+data['filename'])
+        try:
+            os.mkdir(OUTPUT_FOLDER+data['filename'])
+        except:
+            print("Already exist")
     file_name = OUTPUT_FOLDER+data['filename']+'/'+str(file_id)+'_' + datetime.datetime.now().strftime('%Y-%m-%d')
     print(file_name)
     if os.path.isfile(file_name + '_with_html.txt'):
